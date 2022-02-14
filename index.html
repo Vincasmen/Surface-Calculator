@@ -4,7 +4,54 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Surface Calculator</title>
+    <link rel="stylesheet" href="/main.css" />
   </head>
-  <body></body>
+  <body>
+    <header>
+      <div class="main-page-header">
+        <h1 class="page-header">Surface calculator</h1>
+      </div>
+    </header>
+    <hero>
+      <img src="/Pictures/cilinder.png" alt="cilinder" />
+    </hero>
+
+    <!----FORMS--->
+
+    <div class="input-field">
+      <form id="form-PI">
+        <label for="π">π</label>
+        <input
+          type="text"
+          id="PI"
+          name="π"
+          placeholder="3,141592654"
+          readonly
+        />
+      </form>
+      <form id="form-outer-diameter">
+        <label for="Outer diameter">Outer diameter</label>
+        <input
+          type="text"
+          id="outer-diameter"
+          name="Outer diameter"
+          placeholder="Outer diameter"
+        />
+      </form>
+      <form id="form-length-of-the-cilinder">
+        <label for="Length of the cilinder">Length of the cilinder</label>
+        <input
+          type="text"
+          id="Length-of-the-cilinder"
+          name="Cilinder length"
+          placeholder="Cilinder length"
+        />
+      </form>
+    </div>
+    <button class="submit-button" type="button">Calculate!</button>
+    <div class="output-box"></div>
+    <footer></footer>
+  </body>
+  <script src="/main.js"></script>
 </html>
