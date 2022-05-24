@@ -13,9 +13,9 @@ body {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  margin: -0.5em;
+  margin: -0.4em;
   background-color: rgb(11, 149, 241);
-  border-bottom: 1.2px solid rgb(255, 0, 0);
+  border-bottom: 1.4px solid rgb(255, 255, 255);
 }
 
 img {
@@ -67,6 +67,60 @@ input {
   flex-direction: column;
   overflow: hidden;
 }
+
+/*---DROPDOWN UNIT INPUT BUTTON---*/
+#dropdown-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-items: right;
+}
+
+#dropdown-btn {
+  display: flex;
+  background-color: white;
+  color: black;
+  padding: 5px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#unit-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+#dropdown-options {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 5px;
+}
+
+#dropdown-options a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+#dropdown-options a:hover {
+  background-color: #bebebe;
+}
+
+#unit-dropdown:hover #dropdown-options {
+  display: block;
+}
+
+#unit-dropdown:hover #dropdown-btn {
+  background-color: #bebebe;
+}
+
+/*---SUBMIT BUTTON---*/
 
 #submit-button {
   display: block;
