@@ -71,12 +71,15 @@ input {
 /*---DROPDOWN UNIT INPUT BUTTON---*/
 #dropdown-section {
   display: flex;
-  flex-wrap: wrap;
-  justify-items: right;
+  position: relative;
+  align-items: center;
+  justify-items: center;
 }
 
 #dropdown-btn {
   display: flex;
+  justify-content: center;
+  position: relative;
   background-color: white;
   color: black;
   padding: 5px;
@@ -87,14 +90,18 @@ input {
 }
 
 #unit-dropdown {
+  background-color: aqua;
   position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: right;
+  text-align: center;
+  align-items: center;
 }
 
 #dropdown-options {
   display: none;
   position: absolute;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   min-width: 100px;
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
