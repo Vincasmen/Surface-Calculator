@@ -80,22 +80,23 @@ input {
   display: flex;
   justify-content: center;
   position: relative;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0);
   color: black;
   padding: 5px;
   font-size: 16px;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 15px;
 }
 
 #unit-dropdown {
-  background-color: aqua;
+  background-color: rgb(255, 255, 255);
   position: relative;
   display: flex;
   justify-content: right;
   text-align: center;
   align-items: center;
+  border-radius: 15px;
 }
 
 #dropdown-options {

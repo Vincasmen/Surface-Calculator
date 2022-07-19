@@ -10,9 +10,9 @@ window.onload = function () {
 };
 
 const dropDownOption = document.querySelectorAll("#dropdown-options");
-
+console.log(dropDownOption);
 for (i = 0; i < dropDownOption.length; i++) {
   dropDownOption[i].addEventListener("click", function () {
-    console.log(dropDownOption[i].value);
+    console.log(innerHTML);
   });
 }
