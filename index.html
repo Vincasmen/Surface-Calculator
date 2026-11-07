@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="cs">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light dark" />
-    <title>Surface Calculator</title>
+    <title>Kalkulačka povrchu válce</title>
+    <script>
+      // Apply the theme before the first paint to avoid a flash of the wrong colors
+      (function () {
+        let theme = null;
+        try {
+          theme = localStorage.getItem("theme");
+        } catch (e) {}
+        if (theme !== "light" && theme !== "dark") {
+          theme = window.matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light";
+        }
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,23 +28,43 @@
     <link rel="stylesheet" href="main.css" />
   </head>
   <body>
+    <nav class="toolbar">
+      <div class="language-switch" role="group" aria-label="Language">
+        <button type="button" class="language-button" data-lang="cs">CS</button>
+        <button type="button" class="language-button" data-lang="en">EN</button>
+        <button type="button" class="language-button" data-lang="de">DE</button>
+      </div>
+
+      <button type="button" id="theme-toggle" class="theme-toggle">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z" />
+        </svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4.5" />
+          <path
+            d="M12 1.5v2.5M12 20v2.5M1.5 12H4M20 12h2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8"
+          />
+        </svg>
+      </button>
+    </nav>
+
     <header class="site-header">
-      <h1>Surface calculator</h1>
-      <p class="subtitle">Lateral and total surface area of a cylinder</p>
+      <h1 data-i18n="title">Kalkulačka povrchu válce</h1>
+      <p class="subtitle" data-i18n="subtitle">Povrch válce bez podstav a s podstavami</p>
     </header>
 
     <main class="calculator">
       <figure class="illustration">
-        <img src="Pictures/cylinder.png" alt="Cylinder with height h and radius r" />
+        <img src="Pictures/cylinder.png" data-i18n-alt="imageAlt" alt="Válec s výškou h a poloměrem r" />
         <figcaption>
-          <span>A = π · d · h</span>
-          <span>A<sub>total</sub> = A + 2 · π · r²</span>
+          <span>π · d · h</span>
+          <span>π · d · h + 2 · π · r²</span>
         </figcaption>
       </figure>
 
       <form id="calculator-form" class="calculator-form" novalidate>
         <div class="field">
-          <label for="outer-diameter">Outer diameter <span class="hint">d</span></label>
+          <label for="outer-diameter"><span data-i18n="diameter">Vnější průměr</span> <span class="hint">d</span></label>
           <input
             type="number"
             id="outer-diameter"
@@ -38,12 +72,13 @@
             inputmode="decimal"
             min="0"
             step="any"
-            placeholder="e.g. 10"
+            data-i18n-placeholder="diameterPlaceholder"
+            placeholder="např. 10"
           />
         </div>
 
         <div class="field">
-          <label for="length-of-the-cylinder">Length of the cylinder <span class="hint">h</span></label>
+          <label for="length-of-the-cylinder"><span data-i18n="length">Délka válce</span> <span class="hint">h</span></label>
           <input
             type="number"
             id="length-of-the-cylinder"
@@ -51,12 +86,13 @@
             inputmode="decimal"
             min="0"
             step="any"
-            placeholder="e.g. 20"
+            data-i18n-placeholder="lengthPlaceholder"
+            placeholder="např. 20"
           />
         </div>
 
         <div class="field">
-          <label for="unit-select">Unit</label>
+          <label for="unit-select" data-i18n="unit">Jednotka</label>
           <select id="unit-select" name="unit">
             <option value="mm">mm</option>
             <option value="cm">cm</option>
@@ -65,23 +101,21 @@
           </select>
         </div>
 
-        <button id="submit-button" type="submit">Calculate</button>
+        <button id="submit-button" type="submit" data-i18n="calculate">Spočítat</button>
       </form>
 
       <section id="output-box" class="results" aria-live="polite">
         <div class="result">
-          <span class="result-label">Lateral surface</span>
+          <span class="result-label" data-i18n="withoutBases">Bez podstav (plášť)</span>
           <span class="result-value" id="lateral-surface">–</span>
         </div>
         <div class="result">
-          <span class="result-label">Total surface</span>
+          <span class="result-label" data-i18n="withBases">S podstavami</span>
           <span class="result-value" id="total-surface">–</span>
         </div>
-        <p class="error" id="error-message" hidden></p>
+        <p class="error" id="error-message" data-i18n="error" hidden></p>
       </section>
     </main>
-
-    <footer class="site-footer">π ≈ 3.141592654</footer>
 
     <script src="main.js"></script>
   </body>
