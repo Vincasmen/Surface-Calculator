@@ -2,75 +2,87 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light dark" />
     <title>Surface Calculator</title>
-    <link rel="stylesheet" href="main.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
     />
+    <link rel="stylesheet" href="main.css" />
   </head>
   <body>
-    <header>
-      <div class="main-page-header">
-        <h1 class="page-header">Surface calculator</h1>
-      </div>
+    <header class="site-header">
+      <h1>Surface calculator</h1>
+      <p class="subtitle">Lateral and total surface area of a cylinder</p>
     </header>
-    <hero>
-      <img src="Pictures/cylinder.png" alt="cylinder" />
-    </hero>
 
-    <!----FORMS--->
+    <main class="calculator">
+      <figure class="illustration">
+        <img src="Pictures/cylinder.png" alt="Cylinder with height h and radius r" />
+        <figcaption>
+          <span>A = π · d · h</span>
+          <span>A<sub>total</sub> = A + 2 · π · r²</span>
+        </figcaption>
+      </figure>
 
-    <div class="input-field">
-      <form id="form-PI">
-        <label for="PI">π</label>
-        <input
-          type="number"
-          id="PI"
-          name="π"
-          placeholder="3,141592654"
-          readonly
-        />
-      </form>
-      <form id="form-outer-diameter">
-        <label for="outer-diameter">Outer diameter</label>
-        <input
-          type="number"
-          id="outer-diameter"
-          name="Outer diameter"
-          placeholder="Outer diameter"
-        />
-      </form>
-      <form id="form-length-of-the-cylinder">
-        <label for="length-of-the-cylinder">Length of the cylinder</label>
-        <input
-          type="number"
-          id="length-of-the-cylinder"
-          name="Cylinder length"
-          placeholder="Cylinder length"
-        />
-      </form>
-    </div>
-    <div>
-      <div id="dropdown-section">
-        <div id="unit-dropdown">
-          <button id="dropdown-btn">Select a unit</button>
-          <div id="dropdown-options">
-            <a href="#">mm</a>
-            <a href="#">cm</a>
-            <a href="#">m</a>
-            <a href="#">km</a>
-          </div>
+      <form id="calculator-form" class="calculator-form" novalidate>
+        <div class="field">
+          <label for="outer-diameter">Outer diameter <span class="hint">d</span></label>
+          <input
+            type="number"
+            id="outer-diameter"
+            name="outer-diameter"
+            inputmode="decimal"
+            min="0"
+            step="any"
+            placeholder="e.g. 10"
+          />
         </div>
-      </div>
-    </div>
-    <div id="submit-output-section">
-      <button id="submit-button" type="button">Calculate!</button>
-      <p id="output-box"></p>
-    </div>
-    <footer></footer>
+
+        <div class="field">
+          <label for="length-of-the-cylinder">Length of the cylinder <span class="hint">h</span></label>
+          <input
+            type="number"
+            id="length-of-the-cylinder"
+            name="length-of-the-cylinder"
+            inputmode="decimal"
+            min="0"
+            step="any"
+            placeholder="e.g. 20"
+          />
+        </div>
+
+        <div class="field">
+          <label for="unit-select">Unit</label>
+          <select id="unit-select" name="unit">
+            <option value="mm">mm</option>
+            <option value="cm">cm</option>
+            <option value="m">m</option>
+            <option value="km">km</option>
+          </select>
+        </div>
+
+        <button id="submit-button" type="submit">Calculate</button>
+      </form>
+
+      <section id="output-box" class="results" aria-live="polite">
+        <div class="result">
+          <span class="result-label">Lateral surface</span>
+          <span class="result-value" id="lateral-surface">–</span>
+        </div>
+        <div class="result">
+          <span class="result-label">Total surface</span>
+          <span class="result-value" id="total-surface">–</span>
+        </div>
+        <p class="error" id="error-message" hidden></p>
+      </section>
+    </main>
+
+    <footer class="site-footer">π ≈ 3.141592654</footer>
+
+    <script src="main.js"></script>
   </body>
-  <script src="main.js"></script>
 </html>

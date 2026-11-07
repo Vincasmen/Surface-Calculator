@@ -1,28 +1,37 @@
 window.onload = function () {
-  const dropdownButton = document.getElementById("dropdown-btn");
-  const output = document.getElementById("output-box");
-  let unit = "mm";
+  const form = document.getElementById("calculator-form");
+  const diameterInput = document.getElementById("outer-diameter");
+  const lengthInput = document.getElementById("length-of-the-cylinder");
+  const unitSelect = document.getElementById("unit-select");
+  const lateralOutput = document.getElementById("lateral-surface");
+  const totalOutput = document.getElementById("total-surface");
+  const errorMessage = document.getElementById("error-message");
 
-  // Unit dropdown: remember the chosen unit and show it on the button
-  const dropDownOptions = document.querySelectorAll("#dropdown-options a");
-  for (let i = 0; i < dropDownOptions.length; i++) {
-    dropDownOptions[i].addEventListener("click", function (event) {
-      event.preventDefault();
-      unit = this.textContent;
-      dropdownButton.textContent = "Unit: " + unit;
-    });
+  function formatArea(value, unit) {
+    return (
+      value.toLocaleString("en-US", {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+      }) +
+      " " +
+      unit +
+      "²"
+    );
   }
 
   function calculate() {
-    const outerDiameter = parseFloat(
-      document.getElementById("outer-diameter").value
-    );
-    const cylinderLength = parseFloat(
-      document.getElementById("length-of-the-cylinder").value
-    );
+    const outerDiameter = parseFloat(diameterInput.value);
+    const cylinderLength = parseFloat(lengthInput.value);
+    const unit = unitSelect.value;
+
+    diameterInput.setAttribute("aria-invalid", !(outerDiameter > 0));
+    lengthInput.setAttribute("aria-invalid", !(cylinderLength > 0));
 
     if (!(outerDiameter > 0) || !(cylinderLength > 0)) {
-      output.textContent = "Enter a positive diameter and length.";
+      errorMessage.textContent = "Enter a positive diameter and length.";
+      errorMessage.hidden = false;
+      lateralOutput.textContent = "–";
+      totalOutput.textContent = "–";
       return;
     }
 
@@ -30,19 +39,14 @@ window.onload = function () {
     const lateralSurface = Math.PI * outerDiameter * cylinderLength;
     const totalSurface = lateralSurface + 2 * Math.PI * radius * radius;
 
-    output.innerHTML =
-      "<span>Lateral surface: " + lateralSurface.toFixed(2) + " " + unit + "²</span>" +
-      "<span>Total surface: " + totalSurface.toFixed(2) + " " + unit + "²</span>";
+    errorMessage.hidden = true;
+    lateralOutput.textContent = formatArea(lateralSurface, unit);
+    totalOutput.textContent = formatArea(totalSurface, unit);
   }
 
-  document.getElementById("submit-button").onclick = calculate;
-
-  // Pressing Enter in an input would submit the form and reload the page
-  const forms = document.querySelectorAll(".input-field form");
-  for (let i = 0; i < forms.length; i++) {
-    forms[i].addEventListener("submit", function (event) {
-      event.preventDefault();
-      calculate();
-    });
-  }
+  // Covers both the button and pressing Enter in an input
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    calculate();
+  });
 };
