@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Surface Calculator</title>
-    <link rel="stylesheet" href="/main.css" />
+    <link rel="stylesheet" href="main.css" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap"
@@ -18,14 +18,14 @@
       </div>
     </header>
     <hero>
-      <img src="/Pictures/cilinder.png" alt="cilinder" />
+      <img src="Pictures/cylinder.png" alt="cylinder" />
     </hero>
 
     <!----FORMS--->
 
     <div class="input-field">
       <form id="form-PI">
-        <label for="π">π</label>
+        <label for="PI">π</label>
         <input
           type="number"
           id="PI"
@@ -35,21 +35,21 @@
         />
       </form>
       <form id="form-outer-diameter">
-        <label for="Outer diameter">Outer diameter</label>
+        <label for="outer-diameter">Outer diameter</label>
         <input
           type="number"
           id="outer-diameter"
           name="Outer diameter"
-          placeholder="Outer diameter in mm"
+          placeholder="Outer diameter"
         />
       </form>
-      <form id="form-length-of-the-cilinder">
-        <label for="Length of the cilinder">Length of the cilinder</label>
+      <form id="form-length-of-the-cylinder">
+        <label for="length-of-the-cylinder">Length of the cylinder</label>
         <input
           type="number"
-          id="length-of-the-cilinder"
-          name="Cilinder length"
-          placeholder="Cilinder length in mm"
+          id="length-of-the-cylinder"
+          name="Cylinder length"
+          placeholder="Cylinder length"
         />
       </form>
     </div>
@@ -58,19 +58,11 @@
         <div id="unit-dropdown">
           <button id="dropdown-btn">Select a unit</button>
           <div id="dropdown-options">
-            <a href="#dropdown-btn">mm</a>
-            <a href="#dropdown-btn">cm</a>
-            <a href="#dropdown-btn">m</a>
-            <a href="#dropdown-btn">km</a>
+            <a href="#">mm</a>
+            <a href="#">cm</a>
+            <a href="#">m</a>
+            <a href="#">km</a>
           </div>
-          <!-- <div id="unit-dropdown">
-        <button id="dropdown-btn">Select a unit</button>
-        <div id="dropdown-options">
-          <a href="#">mm</a>
-          <a href="#">cm</a>
-          <a href="#">m</a>
-          <a href="#">km</a>
-        </div> -->
         </div>
       </div>
     </div>
@@ -80,5 +72,5 @@
     </div>
     <footer></footer>
   </body>
-  <script src="/main.js"></script>
+  <script src="main.js"></script>
 </html>

@@ -62,7 +62,7 @@ input {
   flex-direction: column;
   overflow: hidden;
 }
-#form-length-of-the-cilinder {
+#form-length-of-the-cylinder {
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -151,6 +151,9 @@ input {
 
 #output-box {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   justify-content: center;
   margin: 0 auto;
   padding: 0.8em;
